@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package hzglexamplesvc;
+option go_package = "github.com/HouzuoGuo/hello-grpc;hzglexamplesvc";
+
+service DataTypeExperiments {
+        rpc GetSingleResponse (RequestOfManyTypes) returns (ResponseOfManyTypes);
+        rpc GetStreamResponse (RequestOfManyTypes) returns (stream ResponseOfManyTypes);
+        rpc GetSingleResponseFromStream (stream RequestOfManyTypes) returns (ResponseOfManyTypes);
+        rpc GetStreamResponseFromStream (stream RequestOfManyTypes) returns (stream ResponseOfManyTypes);
+}
+
+message RequestOfManyTypes {
+        string AString = 1;
+        int32 AnInt = 2;
+        float AFloat = 3;
+        double ADouble = 4;
+        bool ABool = 5;
+        bytes ABlob = 6;
+        enum AnEnumDef {
+             FirstMustBeZero = 0;
+             Second = 222;
+             Third = 333;
+        }
+        AnEnumDef AnEnum = 7;
+        repeated int64 AnArray = 8;
+        map<string, bool> AMap = 9;
+}
+
+message ResponseOfManyTypes {
+        string AString = 1;
+        int32 AnInt = 2;
+        float AFloat = 3;
+        double ADouble = 4;
+        bool ABool = 5;
+        bytes ABlob = 6;
+        enum AnEnumDef {
+             FirstMustBeZero = 0;
+             Second = 222;
+             Third = 333;
+        }
+        AnEnumDef AnEnum = 7;
+        repeated int64 AnArray = 8;
+        map<string, bool> AMap = 9;
+}
